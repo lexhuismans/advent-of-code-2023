@@ -1,0 +1,3 @@
+module aoc/problem-1
+
+go 1.20
