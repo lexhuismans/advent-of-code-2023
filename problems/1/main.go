@@ -27,17 +27,15 @@ func main() {
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		var txt string = scanner.Text()
-		fmt.Println(txt)
-		txt = strings.Replace(txt, "one", "1", -1)
-		txt = strings.Replace(txt, "two", "2", -1)
-		txt = strings.Replace(txt, "three", "3", -1)
+		txt = strings.Replace(txt, "one", "o1e", -1)
+		txt = strings.Replace(txt, "two", "t2o", -1)
+		txt = strings.Replace(txt, "three", "t3e", -1)
 		txt = strings.Replace(txt, "four", "4", -1)
-		txt = strings.Replace(txt, "five", "5", -1)
+		txt = strings.Replace(txt, "five", "5e", -1)
 		txt = strings.Replace(txt, "six", "6", -1)
-		txt = strings.Replace(txt, "seven", "7", -1)
-		txt = strings.Replace(txt, "eight", "8", -1)
-		txt = strings.Replace(txt, "nine", "9", -1)
-		fmt.Println(txt)
+		txt = strings.Replace(txt, "seven", "7n", -1)
+		txt = strings.Replace(txt, "eight", "e8t", -1)
+		txt = strings.Replace(txt, "nine", "n9e", -1)
 
 		var nb [2]rune
 		// First digit
@@ -62,7 +60,6 @@ func main() {
 			fmt.Println("Error:", err)
 			return
 		}
-		fmt.Println("Adding: ", num)
 		total += num
 	}
 
