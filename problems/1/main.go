@@ -7,11 +7,12 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"time"
 	"unicode"
 )
 
 func main() {
-	file, err := os.Open("./input")
+	file, err := os.Open("./input.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -60,6 +61,9 @@ func main() {
 			fmt.Println("Error:", err)
 			return
 		}
+
+		time.Sleep(5 * time.Millisecond)
+
 		total += num
 	}
 
