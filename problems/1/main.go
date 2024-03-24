@@ -13,6 +13,7 @@ import (
 )
 
 var m = sync.Mutex{}
+var wg sync.WaitGroup
 
 func main() {
 	file, err := os.Open("./input.txt")
@@ -30,7 +31,10 @@ func main() {
 	// Loop over digits
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
+		wg.Add(1)
 		go func(txt string) {
+			defer wg.Done()
+
 			txt = strings.Replace(txt, "one", "o1e", -1)
 			txt = strings.Replace(txt, "two", "t2o", -1)
 			txt = strings.Replace(txt, "three", "t3e", -1)
@@ -64,7 +68,7 @@ func main() {
 				fmt.Println("Error:", err)
 				return
 			}
-			time.Sleep(1 * time.Millisecond)
+			time.Sleep(5 * time.Millisecond)
 
 			m.Lock()
 			total += num
@@ -72,10 +76,11 @@ func main() {
 		}(scanner.Text())
 	}
 
+	wg.Wait()
+
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
 
-	time.Sleep(1 * time.Second)
 	fmt.Println("Result: ", total)
 }
